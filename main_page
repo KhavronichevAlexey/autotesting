@@ -1,0 +1,68 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from base.base_class import Base
+
+class Main_page(Base):  # class child
+
+    def __init__(self, driver):  # method with driver
+        super().__init__(driver)  # method show that it is child class
+        self.driver = driver  # driver for next steps
+
+    # Locators
+
+    for_men = "//div[@class='_2glQmA_D']"
+    hoodie = "//div[@class='_2JoIOzrN']"
+    search = "//input[@size='5']"
+    button_search = "(//span[@class='_16iQUKiL'])[3]"
+    result_search = "(//div[@class='_3vYFslUB'])[1]"
+
+    # Getters: for waiting
+
+    def get_for_men(self):  # method returns locator "for_men", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.for_men)))
+
+    def get_hoodie(self):  # method returns locator "hoodie", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.hoodie)))
+
+    def get_search(self):  # method returns locator "search", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.search)))
+
+    def get_button_search(self):  # method returns locator "button_search", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_search)))
+
+    def get_result_search(self):  # method returns locator "result_search", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.result_search)))
+
+    # Actions with elements
+
+    def click_for_men(self):  # method for button press. Maybe some actions for one element.
+        self.get_for_men().click()
+        print("Click for men button")
+
+    def click_hoodie(self):  # method for button press. Maybe some actions for one element.
+        self.get_hoodie().click()
+        print("Click hoodie button")
+
+    def input_search(self, search):  # method for text input. Maybe some actions for one element.
+        self.get_search().send_keys(search)
+        print("Input search text")
+
+    def click_button_search(self):  # method for button press. Maybe some actions for one element.
+        self.get_button_search().click()
+        print("Click search button")
+
+    def click_result_search(self):  # method for button press. Maybe some actions for one element.
+        self.get_result_search().click()
+        print("Click search result")
+
+    # Method
+
+    def select_product(self):  # method with mandatory attributes
+        self.driver.get(self.url)
+        self.get_current_url()
+        self.click_for_men()
+        self.click_hoodie()
+        self.input_search("Очень приятно, Бог")
+        self.click_button_search()
+        self.click_result_search()
