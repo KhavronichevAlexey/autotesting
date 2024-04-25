@@ -1,0 +1,21 @@
+import datetime
+
+class Base():  # parent class
+
+    url = 'https://www.vsemayki.ru/'
+
+    def __init__(self, driver):  # method of driver transfer. "driver" saves example of Chrome driver.
+        self.driver = driver  # driver for next steps
+
+    """Method Get current url"""
+
+    def get_current_url(self):
+        get_url = self.driver.current_url
+        print("Current url is " + get_url)
+
+    """Method Screenshot"""
+
+    def get_screenshot(self):
+        now_date = datetime.datetime.now().strftime("%Y.%m.%d.%H.%M.%S")
+        name_screenshot = "screenshot (" + now_date + ").png"
+        self.driver.save_screenshot('C:\\Users\\Алексей\\PycharmProjects\\pythonProject2\\screen\\' + name_screenshot)
