@@ -1,0 +1,43 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from base.base_class import Base
+
+class Accept_page(Base):  # class child
+
+    def __init__(self, driver): # method with driver
+        super().__init__(driver)  # method show that it is child class
+        self.driver = driver  # driver for next steps
+
+    #  Locators
+
+    city_accept = "(//button[@data-autotest='component-6'])[1]"
+    rules_accept = "//span[@data-autotest='component-22']"
+
+    # Getters: for waiting
+
+    def get_city_accept(self):  # method returns locator "city_accept", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.city_accept)))
+
+    def get_rules_accept(self):  # method returns locator "rules_accept", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.rules_accept)))
+
+    # Actions with elements
+
+    def click_city_accept(self):  # method for button press. Maybe some actions for one element.
+        self.get_city_accept().click()
+        print("Click city choice")
+
+    def click_rules_accept(self):  # method for button press. Maybe some actions for one element.
+        self.get_rules_accept().click()
+        print("Click rules accept")
+
+    # Method
+
+    def select_accept(self):  # method with mandatory attributes
+        self.driver.maximize_window()
+        self.driver.get(self.url)
+        self.get_current_url()
+        self.click_city_accept()
+        self.click_rules_accept()
+
