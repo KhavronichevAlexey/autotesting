@@ -53,7 +53,7 @@ class Checkout_page(Base):  # class child
     def get_house(self):  # method returns locator "house", gets able to produce actions with elements
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.house)))
 
-    def get_x(self):  # method returns locator "x", gets able to produce actions with elements
+    def get_x(self):  # click on "City" set for filling "House" set
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.x)))
 
     def get_confirm(self):  # method returns locator "confirm", gets able to produce actions with elements
