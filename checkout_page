@@ -1,0 +1,156 @@
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from base.base_class import Base
+
+
+class Checkout_page(Base):  # class child
+
+    def __init__(self, driver):  # method with driver
+        super().__init__(driver)  # method show that it is child class
+        self.driver = driver  # driver for next steps
+
+    # Locators
+
+    first_name = "//input[@autocomplete='given-name']"
+    last_name = "//input[@autocomplete='family-name']"
+    phone = "//input[@pattern='\d*']"
+    email = "//input[@type='email']"
+    delivery_method = "(//p[@class='_2HzUj_kv'])[2]"
+    street = "(//div[@id='address'])[2]"
+    street_choice = "//div[contains(text(), 'ул. 1-я Тверская-Ямская')]"
+    house = "(//div[@id='address'])[3]"
+    x = "(//div[@id='address'])[1]"
+    confirm = "(//span[@data-autotest='component-22'])[4]"
+    delivery_payment = "(//span[@class='_1K3Z6QgC'])[2]"
+    checkbox_notifications = "//span[@class='YvyYZXzD']"
+    checkout = "(//span[@data-autotest='component-22'])[4]"
+
+    # Getters
+
+    def get_first_name(self):  # method returns locator "first_name", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.first_name)))
+
+    def get_last_name(self):  # method returns locator "last_name", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.last_name)))
+
+    def get_phone(self):  # method returns locator "phone", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.phone)))
+
+    def get_email(self):  # method returns locator "email", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.email)))
+
+    def get_delivery_method(self):  # method returns locator "delivery_method", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.delivery_method)))
+
+    def get_street(self):  # method returns locator "street", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.street)))
+
+    def get_street_choice(self):  # method returns locator "street_choice", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.street_choice)))
+
+    def get_house(self):  # method returns locator "house", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.house)))
+
+    def get_x(self):  # method returns locator "x", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.x)))
+
+    def get_confirm(self):  # method returns locator "confirm", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.confirm)))
+
+    def get_delivery_payment(self):  # method returns locator "delivery_payment", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.delivery_payment)))
+
+    def get_checkbox_notifications(self):  # method returns locator "checkbox_notifications", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.checkbox_notifications)))
+
+    def get_checkout(self):  # method returns locator "checkout", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.checkout)))
+
+    # Actions with elements
+
+    def input_first_name(self, first_name):  # method for text input. Maybe some actions for one element.
+        self.get_first_name().send_keys(first_name)
+        print("Input first name")
+
+    def input_last_name(self, last_name):  # method for text input. Maybe some actions for one element.
+        self.get_last_name().send_keys(last_name)
+        print("Input last name")
+
+    def input_phone(self, phone):  # method for text input. Maybe some actions for one element.
+        self.get_phone().send_keys(phone)
+        print("Input phone")
+
+    def input_email(self, email):  # method for text input. Maybe some actions for one element.
+        self.get_email().send_keys(email)
+        print("Input email")
+
+    def click_delivery_method(self):  # method for click. Maybe some actions for one element.
+        self.get_delivery_method().click()
+        print("Click delivery method")
+
+    def input_street(self, street):  # method for text input. Maybe some actions for one element.
+        self.get_street().send_keys(street)
+        print("Input street")
+
+    def click_street_choice(self):  # method for click. Maybe some actions for one element.
+        self.get_street_choice().click()
+        print("Click street choice")
+
+    def input_house(self, house):  # method for text input. Maybe some actions for one element.
+        self.get_house().send_keys(house)
+        print("Input house")
+
+    def click_x(self):  # method for click. Maybe some actions for one element.
+        self.get_x().click()
+        print("Click x")
+
+    def click_confirm(self):  # method for click. Maybe some actions for one element.
+        self.get_confirm().click()
+        print("Click confirm button")
+
+    def click_delivery_payment(self):  # method for click. Maybe some actions for one element.
+        self.get_delivery_payment().click()
+        print("Click radio button delivery payment")
+
+    def click_checkbox_notifications(self):  # method for click. Maybe some actions for one element.
+        self.get_checkbox_notifications().click()
+        print("Click notifications checkbox")
+
+    def click_checkout(self):  # method for click. Maybe some actions for one element.
+        self.get_checkout().click()
+        print("Click checkout button")
+
+        # Methods
+
+    def checkout_info(self):  # method with mandatory attributes
+        self.get_current_url()
+        time.sleep(2)
+        self.input_first_name("Alex")
+        time.sleep(2)
+        self.input_last_name("Khavronichev")
+        time.sleep(2)
+        self.input_phone("9000000000")
+        time.sleep(2)
+        self.input_email("a@gmail.com")
+        time.sleep(2)
+        self.click_delivery_method()
+        time.sleep(2)
+        self.input_street("ул. Тверская")
+        time.sleep(2)
+        self.click_street_choice()
+        time.sleep(2)
+        self.input_house("500")
+        time.sleep(5)
+        self.click_x()
+        time.sleep(2)
+        self.click_confirm()
+        time.sleep(2)
+        self.click_delivery_payment()
+        time.sleep(2)
+        self.click_checkbox_notifications()
+        time.sleep(2)
+        self.click_checkout()
+        time.sleep(5)
+        self.get_screenshot()
