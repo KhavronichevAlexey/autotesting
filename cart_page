@@ -48,7 +48,7 @@ class Cart_page(Base):  # class child
         self.get_move_to_payment().click()
         print("Click move to payment")
 
-                                        # Methods
+    # Methods
 
     def select_info(self):  # method with mandatory attributes
         self.get_current_url()
