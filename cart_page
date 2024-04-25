@@ -1,0 +1,59 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from base.base_class import Base
+
+class Cart_page(Base):  # class child
+
+    def __init__(self, driver):  # method with driver
+        super().__init__(driver)  # method show that it is child class
+        self.driver = driver  # driver for next steps
+
+    # Locators
+
+    add_to_cart = "//a[@class='_3q1PZ3XG']"
+    size_cart = "(//a[@class='_16WXU0VI'])[1]"
+    move_to_cart = "//button[@class='_3q1PZ3XG _2EUUbTOK']"
+    move_to_payment = "//a[@class='_38Q3eyBy']"
+
+    # Getters: for waiting
+
+    def get_add_to_cart(self):  # method returns locator "add_to_cart", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.add_to_cart)))
+
+    def get_size_cart(self):  # method returns locator "size_cart", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.size_cart)))
+
+    def get_move_to_cart(self):  # method returns locator "move_to_cart", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.move_to_cart)))
+
+    def get_move_to_payment(self):  # method returns locator "move_to_payment", gets able to produce actions with elements
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.move_to_payment)))
+
+    # Actions with elements
+
+    def click_add_to_cart(self):  # method for button press. Maybe some actions for one element.
+        self.get_add_to_cart().click()
+        print("Click add to cart button")
+
+    def click_size_cart(self):  # method for button press. Maybe some actions for one element.
+        self.get_size_cart().click()
+        print("Click size hoodie")
+
+    def click_move_to_cart(self):  # method for button press. Maybe some actions for one element.
+        self.get_move_to_cart().click()
+        print("Click move to cart")
+
+    def click_move_to_payment(self):  # method for button press. Maybe some actions for one element.
+        self.get_move_to_payment().click()
+        print("Click move to payment")
+
+                                        # Methods
+
+    def select_info(self):  # method with mandatory attributes
+        self.get_current_url()
+        self.click_size_cart()
+        self.click_add_to_cart()
+        self.click_move_to_cart()
+        self.click_move_to_payment()
+
