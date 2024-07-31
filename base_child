@@ -1,0 +1,84 @@
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from base.base_class import Base
+
+
+class New_order(Base):
+
+    # Locators
+
+    processing = "(//button[contains(text(), 'Processing')])"
+    create = "(//button[contains(text(), 'Create')])"
+    dd_ref_fac = "(//img[contains(@class, 'x-form-trigger')])[16]"
+    choice_ref_fac = "//span[contains(text(), '360 Medical Center')]"
+    save_new_order = "//button[contains(text(), 'Save')]"
+
+    all_tabs_close = "//div[@qtip='Close All Tabs']"
+
+    # Getters
+
+    def get_processing(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.processing)))
+
+    def get_create(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.create)))
+
+    def get_dd_ref_fac(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.dd_ref_fac)))
+
+    def get_choice_ref_fac(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.choice_ref_fac)))
+
+    def get_save_new_order(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.save_new_order)))
+
+    def get_all_tabs_close(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.all_tabs_close)))
+
+    # Actions
+
+    def click_processing(self):
+        self.get_processing().click()
+        print("Processing click")
+
+    def click_create(self):
+        self.get_create().click()
+        print("Create click")
+
+    def click_dd_ref_fac(self):
+        self.get_dd_ref_fac().click()
+        print("Referring facility dropdown open")
+
+    def click_choice_ref_fac(self):
+        self.get_choice_ref_fac().click()
+        print("Referring facility choice")
+
+    def click_save_new_order(self):
+        self.get_save_new_order().click()
+        print("New order save")
+
+    def click_all_tabs_close(self):
+        self.get_all_tabs_close().click()
+        print("All tabs close click")
+
+    # Method
+
+    def ticket(self):
+        self.driver.get(self.url)
+        time.sleep(1)
+        self.get_current_url()
+        time.sleep(1)
+        self.click_processing()
+        time.sleep(5)
+        self.click_create()
+        time.sleep(3)
+        self.click_dd_ref_fac()
+        time.sleep(1)
+        self.click_choice_ref_fac()
+        time.sleep(1)
+        self.click_save_new_order()
+        time.sleep(8)
+        self.click_all_tabs_close()
+        time.sleep(1)
