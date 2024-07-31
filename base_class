@@ -2,10 +2,10 @@ import datetime
 
 class Base():  # parent class
 
-    url = 'https://www.vsemayki.ru/'
+    url = ''
 
-    def __init__(self, driver):  # method of driver transfer. "driver" saves example of Chrome driver.
-        self.driver = driver  # driver for next steps
+    def __init__(self, driver):
+        self.driver = driver
 
     """Method Get current url"""
 
